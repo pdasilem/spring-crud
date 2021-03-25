@@ -1,14 +1,11 @@
 package web.controller;
 
-import dao.UserDao;
-import dao.UserDaoImp;
-import model.UserModel;
+import web.model.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import service.UserService;
-import service.UserServiceImp;
+import web.service.UserService;
 
 
 @Controller

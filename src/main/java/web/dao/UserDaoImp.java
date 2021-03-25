@@ -1,19 +1,11 @@
-package dao;
+package web.dao;
 
-import model.UserModel;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import web.model.UserModel;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
-import java.sql.Connection;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Repository
 public class UserDaoImp implements UserDao{
@@ -38,13 +30,8 @@ public class UserDaoImp implements UserDao{
 
     @Override
     public void update(long id, UserModel newUser) {
-        UserModel updateUser = entityManager.find(UserModel.class, id);
-        updateUser.setName(newUser.getName());
-        updateUser.setSurName(newUser.getSurName());
-        updateUser.setAge(newUser.getAge());
-        updateUser.setProfession(newUser.getProfession());
-        updateUser.setYearsExp(newUser.getYearsExp());
-        entityManager.persist(updateUser);
+         entityManager.merge(newUser);
+
     }
 
     @Override

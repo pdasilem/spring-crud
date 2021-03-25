@@ -13,6 +13,7 @@
         <th>Age</th>
         <th>Profession</th>
         <th>Expierence (years)</th>
+        <th>Action</th>
     </tr>
     <tr th:each ="user : ${userModels}">
         <td th:utext="${user.getName()}"></td>
@@ -20,15 +21,17 @@
         <td th:utext="${user.getAge()}"></td>
         <td th:utext="${user.getProfession()}"></td>
         <td th:utext="${user.getYearsExp()}"></td>
-        <td><a th:href="@{/{id}/edit(id=${user.getId()})}">Edit</a></td>
-        <td><a th:href="@{/{id}(id=${user.getId()})}">Delete</a></td>
+        <td><a th:href="@{/users/{id}/edit(id=${user.getId()})}">Edit</a></td>
+        <td><form th:method="DELETE" th:action="@{/users/{id}(id=${user.getId()})}">
+            <input type="submit" value="Delete"/>
+        </form> </td>
 
     </tr>
 </table>
 <br>
 <br>
 
-<form th:method="GET" th:action="@{/new}">
+<form th:method="GET" th:action="@{/users/new}">
     <input type="submit" value="Add New User"/>
 </form>
 
