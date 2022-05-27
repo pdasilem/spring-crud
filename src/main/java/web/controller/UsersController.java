@@ -12,6 +12,8 @@ import web.service.UserService;
 @RequestMapping("/users")
 public class UsersController {
 
+    private static final String REDIRECT_USERS_PATH = "redirect:/users";
+
     @Autowired
     private final UserService userService;
 
@@ -31,11 +33,11 @@ public class UsersController {
 
         return "users/new";
     }
-    //создается объект user и в него подтягиваются данные в соответствии сполями
+    //создается объект user и в него подтягиваются данные в соответствии с полями
     @PostMapping()
     public String createUser(@ModelAttribute("user") UserModel userModel) {
         userService.save(userModel);
-        return "redirect:/users";
+        return REDIRECT_USERS_PATH;
     }
 
     @GetMapping("/{id}/edit")
@@ -47,12 +49,12 @@ public class UsersController {
     @PatchMapping("/{id}")
     public String update(@ModelAttribute("user") UserModel userModel, @PathVariable("id") long id) {
         userService.update(id, userModel);
-        return "redirect:/users";
+        return REDIRECT_USERS_PATH;
     }
 
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") long id) {
         userService.delete(id);
-        return "redirect:/users";
+        return REDIRECT_USERS_PATH;
     }
 }

@@ -19,7 +19,7 @@ public class UserDaoImp implements UserDao{
     }
 
     @Override
-    public UserModel show(long id) {
+    public UserModel show(Long id) {
         return entityManager.find(UserModel.class, id);
     }
 
@@ -29,13 +29,13 @@ public class UserDaoImp implements UserDao{
     }
 
     @Override
-    public void update(long id, UserModel newUser) {
+    public void update(Long id, UserModel newUser) {
          entityManager.merge(newUser);
 
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(Long id) {
         UserModel userModel = entityManager.find(UserModel.class, id);
         entityManager.remove(userModel);
     }
